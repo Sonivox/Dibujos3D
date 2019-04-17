@@ -1,0 +1,3 @@
+/home/sonivox/CLionProjects/Desing3D/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/sonivox/CLionProjects/Desing3D/cmake-build-debug/CMakeFiles/Desing3D.dir
+/home/sonivox/CLionProjects/Desing3D/cmake-build-debug/CMakeFiles/edit_cache.dir
