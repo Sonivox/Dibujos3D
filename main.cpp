@@ -1,226 +1,230 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include <GL/gl.h>
-#include <GL/glut.h>
+#include <string.h>
+#include <GL/glew.h>
+#include <GL/freeglut.h> // freeglut instead of glut because glut is deprecated
 
+// window title
+#define WINDOW_TITLE_PREFIX "3D design"
 
-GLfloat X = 0.0f; // Translate screen to x direction (left or right)
-GLfloat Y = 0.0f; // Translate screen to y direction (up or down)
-GLfloat Z = 0.0f; // Translate screen to z direction (zoom in or out)
-GLfloat rotX = 0.0f; // Rotate screen on x axis
-GLfloat rotY = 0.0f; // Rotate screen on y axis
-GLfloat rotZ = 0.0f; // Rotate screen on z axis
-GLfloat rotLx = 0.0f; // Translate screen by using the glulookAt function (left or right)
-GLfloat rotLy = 0.0f; // Translate screen by using the glulookAt function (up or down)
-GLfloat rotLz = 0.0f; // Translate screen by using the glulookAt function (zoom in or out)
+// default window's size, but these settings are override later
+int
+        CurrentWidth = 800,
+        CurrentHeight = 600,
+        WindowHandle = 0;
 
-void glDisplayLines(void); // Did declare the function
-// so I did not have to check for order of the functions
+// frame-counter var
+unsigned FrameCount = 0;
 
-// Initialize the OpenGL window
-void init(void)
+// function prototypes
+void Initialize(int, char*[]);
+void InitWindow(int, char*[]);
+void ResizeFunction(int, int);
+void RenderFunction(void);
+void TimerFunction(int);
+void IdleFunction(void);
+
+void display();
+
+// entry point
+int main(int argc, char* argv[])
 {
-    glClearColor (0.0, 0.0, 0.0, 0.0); // Clear the color
-    glShadeModel (GL_FLAT); // Set the shading model to GL_FLAT
-    glEnable (GL_LINE_SMOOTH);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST); // Set Line Antialiasing
-}
 
-// Draw the lines (x,y,z)
-void display(void)
-{
-    glClear (GL_COLOR_BUFFER_BIT); // Clear the Color Buffer
-    glPushMatrix(); 	// It is important to push the Matrix before calling
-    // glRotatef and glTranslatef
-    glRotatef(rotX,1.0,0.0,0.0); // Rotate on x
-    glRotatef(rotY,0.0,1.0,0.0); // Rotate on y
-    glRotatef(rotZ,0.0,0.0,1.0); // Rotate on z
-    glTranslatef(X, Y, Z); 	// Translates the screen left or right,
-    // up or down or zoom in zoom out
-    // Draw the positive side of the lines x,y,z
-    glBegin(GL_LINES);
-    glColor3f (0.0, 1.0, 0.0); // Green for x axis
-    glVertex3f(0,0,0);
-    glVertex3f(10,0,0);
-    glColor3f(1.0,0.0,0.0); // Red for y axis
-    glVertex3f(0,0,0);
-    glVertex3f(0,10,0);
-    glColor3f(0.0,0.0,1.0); // Blue for z axis
-    glVertex3f(0,0,0);
-    glVertex3f(0,0,10);
-    glEnd();
+    Initialize(argc, argv);
 
-    // Dotted lines for the negative sides of x,y,z
-    glEnable(GL_LINE_STIPPLE); 	// Enable line stipple to use a
-    // dotted pattern for the lines
-    glLineStipple(1, 0x0101); 	// Dotted stipple pattern for the lines
-    glBegin(GL_LINES);
-    glColor3f (0.0, 1.0, 0.0); 	// Green for x axis
-    glVertex3f(-10,0,0);
-    glVertex3f(0,0,0);
-    glColor3f(1.0,0.0,0.0); 	// Red for y axis
-    glVertex3f(0,0,0);
-    glVertex3f(0,-10,0);
-    glColor3f(0.0,0.0,1.0); 	// Blue for z axis
-    glVertex3f(0,0,0);
-    glVertex3f(0,0,-10);
-    glEnd();
-    glDisable(GL_LINE_STIPPLE); 	// Disable the line stipple
-    glPopMatrix(); 		// Don't forget to pop the Matrix
-    glutSwapBuffers();
-}
-
-// This function is called whenever the window size is changed
-void reshape (int w, int h)
-{
-    glViewport (0, 0, (GLsizei) w, (GLsizei) h); // Set the viewport
-    glMatrixMode (GL_PROJECTION); 	// Set the Matrix mode
-    glLoadIdentity ();
-    gluPerspective(75, (GLfloat) w /(GLfloat) h , 0.10, 100.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-}
-
-// This function is used for the navigation keys
-void keyboard (unsigned char key, int x, int y)
-{
-    switch (key) {   // x,X,y,Y,z,Z uses the glRotatef() function
-        case 'x': // Rotates screen on x axis
-            rotX -= 0.5f;
-            break;
-        case 'X': // Opposite way
-            rotX += 0.5f;
-            break;
-        case 'y': // Rotates screen on y axis
-            rotY -= 0.5f;
-            break;
-        case 'Y': // Opposite way
-            rotY += 0.5f;
-            break;
-        case 'z': // Rotates screen on z axis
-            rotZ -= 0.5f;
-            break;
-        case 'Z': // Opposite way
-            rotZ += 0.5f;
-            break;
-            // j,J,k,K,l,L uses the gluLookAt function for navigation
-        case 'j':
-            rotLx -= 0.2f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            break;
-        case 'J':
-            rotLx += 0.2f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            break;
-        case 'k':
-            rotLy -= 0.2f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            break;
-        case 'K':
-            rotLy += 0.2f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            break;
-        case 'l': 	// It has a special case when the rotLZ becomes
-            // less than -15 the screen is viewed from the opposite side
-            // therefore this if statement below does not allow rotLz be less than -15
-            if(rotLz + 14 >= 0)
-                rotLz -= 0.2f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            break;
-        case 'L':
-            rotLz += 0.2f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt (rotLx, rotLy, 15.0 + rotLz, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            break;
-        case 'b': // Rotates on x axis by -90 degree
-            rotX -= 90.0f;
-            break;
-        case 'B': // Rotates on y axis by 90 degree
-            rotX += 90.0f;
-            break;
-        case 'n': // Rotates on y axis by -90 degree
-            rotY -= 90.0f;
-            break;
-        case 'N': // Rotates on y axis by 90 degree
-            rotY += 90.0f;
-            break;
-        case 'm': // Rotates on z axis by -90 degree
-            rotZ -= 90.0f;
-            break;
-        case 'M': // Rotates on z axis by 90 degree
-            rotZ += 90.0f;
-            break;
-        case 'o': // Default, resets the translations vies from starting view
-            X = Y = 0.0f;
-            Z = 0.0f;
-            rotX = 0.0f;
-            rotY = 0.0f;
-            rotZ = 0.0f;
-            rotLx = 0.0f;
-            rotLy = 0.0f;
-            rotLz = 0.0f;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            gluLookAt(rotLx, rotLy, 15.0f + rotLz, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-            break;
-    }
-    glutPostRedisplay(); // Redraw the scene
-}
-
-// called on special key pressed
-void specialKey(int key, int x, int y) {
-
-// The keys below are using the gluLookAt() function for navigation
-// Check which key is pressed
-
-    switch(key) {
-        case GLUT_KEY_LEFT : // Rotate on x axis
-            X -= 0.1f;
-            break;
-        case GLUT_KEY_RIGHT : // Rotate on x axis (opposite)
-            X += 0.1f;
-            break;
-        case GLUT_KEY_UP : // Rotate on y axis
-            Y += 0.1f;
-            break;
-        case GLUT_KEY_DOWN : // Rotate on y axis (opposite)
-            Y -= 0.1f;
-            break;
-        case GLUT_KEY_PAGE_UP: // Rotate on z axis
-            Z -= 0.1f;
-            break;
-        case GLUT_KEY_PAGE_DOWN:// Rotate on z axis (opposite)
-            Z += 0.1f;
-            break;
-    }
-    glutPostRedisplay(); // Redraw the scene
-}
-
-// Main entry point of the program
-int main(int argc, char** argv)
-{
-    glutInit(&argc, argv);
-    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB); 	// Setup display mode to
-    // double buffer and RGB color
-    glutInitWindowSize (600,600); // Set the screen size
-    glutCreateWindow("OpenGL 3D Navigation Program");
-    init ();
-    glutReshapeFunc(reshape);
-    glutDisplayFunc(display);
-    glutKeyboardFunc(keyboard); // set window's key callback
-    glutSpecialFunc(specialKey); // set window's to specialKey callback
     glutMainLoop();
 
-    return 0;
+    exit(EXIT_SUCCESS);
+}
+
+// all drawings here
+void display() {
+
+
+    // material properties
+    GLfloat mat_ambient[] = { 0.329412f, 0.223529f, 0.027451f};
+    GLfloat mat_diffuse[] = { 0.780392f, 0.568627f, 0.113725f};
+    GLfloat mat_specular[] = { 0.992157f, 0.941176f, 0.807843f};
+    GLfloat shine[] = {27.8974f};
+
+
+    // "Limpiamos" el frame buffer con el color de "Clear", en este
+    // caso negro.
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glMatrixMode( GL_MODELVIEW_MATRIX );
+    glLoadIdentity();
+
+    // Rotacion de 25 grados en torno al eje x
+    glRotated(25.0, 1.0, 0.0, 0.0);
+    // Rotacion de -30 grados en torno al eje y
+    glRotated(-30.0, 0.0, 1.0, 0.0);
+
+    // Dibujamos una "Tetera" y le aplico el material
+    //glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    //glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    //glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+    //glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+
+    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, shine);
+    glPushMatrix();
+    //setMaterial
+    glutSolidTeapot(125.0);
+    glPopMatrix();
+}
+
+void Initialize(int argc, char* argv[])
+{
+
+    GLenum GlewInitResult;
+
+    InitWindow(argc, argv);
+
+    GlewInitResult = glewInit();
+
+    if (GLEW_OK != GlewInitResult) {
+        fprintf(
+                stderr,
+                "ERROR: %s\n",
+                glewGetErrorString(GlewInitResult)
+        );
+        exit(EXIT_FAILURE);
+    }
+
+    // print system's capability
+    fprintf(
+            stdout,
+            "INFO: OpenGL Version: %s\n",
+            glGetString(GL_VERSION)
+    );
+
+    // OpenGL clear color
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+    //glClearColor(1.0f, 0.0f, 0.0f, 0.0f); // red
+    //glClearColor(0.0f, 1.0f, 0.0f, 0.0f); // green
+    //glClearColor(0.0f, 0.0f, 1.0f, 0.0f); // blue
+    //glClearColor(1.0f, 0.0f, 1.0f, 0.0f); // purple
+    //glClearColor(0.0f, 0.0f, 0.5f, 0.0f); // dark blue
+
+    // flags to enable materials and lighting
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_DEPTH_TEST);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void InitWindow(int argc, char* argv[])
+{
+    glutInit(&argc, argv);
+
+    // set OpenGL's major and minor versions
+    glutInitContextVersion(1, 0);
+
+    // Only not deprecated methods allowed
+    glutInitContextFlags(GLUT_FORWARD_COMPATIBLE);
+    glutInitContextProfile(GLUT_CORE_PROFILE);
+
+    // set behavior on window close by user
+    glutSetOption(
+            GLUT_ACTION_ON_WINDOW_CLOSE,
+            GLUT_ACTION_GLUTMAINLOOP_RETURNS
+    );
+
+    // settings initial values for the window, this override deafult values on top
+    glutInitWindowSize(glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
+
+    // way to render frames
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+
+    // if windowHandle is greater than 0, then no errors on creating the window
+    WindowHandle = glutCreateWindow(WINDOW_TITLE_PREFIX);
+
+    if(WindowHandle < 1) {
+        fprintf(
+                stderr,
+                "ERROR: Could not create a new rendering window.\n"
+        );
+        exit(EXIT_FAILURE);
+    }
+
+    // reset draws to the new size
+    glutReshapeFunc(ResizeFunction);
+    glutDisplayFunc(RenderFunction);
+
+    // behavior to run at idle
+    glutIdleFunc(IdleFunction);
+    glutTimerFunc(0, TimerFunction, 0);
+}
+
+void ResizeFunction(int Width, int Height)
+{
+    CurrentWidth = Width;
+    CurrentHeight = Height;
+
+    // X, Y, width, height
+    glViewport(0, 0, CurrentWidth, CurrentHeight);
+
+    // activating projection matrix
+    glMatrixMode(GL_PROJECTION);
+
+    // clean projection matrix with the identity matrix
+    glLoadIdentity();
+
+    // Usamos proyeccion ortogonal
+    glOrtho(-300, 300, -300, 300, -300, 300);
+    // Activamos la matriz de modelado/visionado.
+    glMatrixMode(GL_MODELVIEW);
+
+    // clean projection matrix with the identity matrix
+    glLoadIdentity();
+}
+
+void RenderFunction(void)
+{
+    ++FrameCount; // aumentando el contador de FPS
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // DRAWINGS START
+    display();
+    // DRAWINGS END
+
+    // send all draws
+    glFlush();
+
+    // OpenGL is the front when calling to glutSwapBuffers();
+    glutSwapBuffers();
+    glutPostRedisplay();
+}
+
+void IdleFunction(void)
+{
+    glutPostRedisplay();
+}
+
+void TimerFunction(int Value)
+{
+    if (0 != Value) {
+        char* TempString = (char*)
+                malloc(512 + strlen(WINDOW_TITLE_PREFIX));
+
+        sprintf(
+                TempString,
+                "%s: %d FPS @ %d x %d",
+                WINDOW_TITLE_PREFIX,
+                FrameCount * 4,
+                CurrentWidth,
+                CurrentHeight
+        );
+
+        glutSetWindowTitle(TempString);
+        free(TempString);
+    }
+
+    FrameCount = 0;
+    glutTimerFunc(250, TimerFunction, 1);
 }
