@@ -46,15 +46,6 @@ int main(int argc, char* argv[])
 
 // all drawings here
 void display() {
-
-
-    // material properties
-    GLfloat mat_ambient[] = { 0.329412f, 0.223529f, 0.027451f};
-    GLfloat mat_diffuse[] = { 0.780392f, 0.568627f, 0.113725f};
-    GLfloat mat_specular[] = { 0.992157f, 0.941176f, 0.807843f};
-    GLfloat shine[] = {27.8974f};
-
-
     // "Limpiamos" el frame buffer con el color de "Clear", en este
     // caso negro.
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -79,6 +70,11 @@ void display() {
 
     material.setMaterial(material.RED_PLASTIC);
     glutSolidTeapot(125.0);
+    glPopMatrix();
+
+    material.setMaterial(material.JADE);
+    glTranslatef(100, 100, 100);
+    glutSolidSphere(100, 100, 100);
     glPopMatrix();
 }
 
