@@ -3,7 +3,13 @@
 #include <string.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h> // freeglut instead of glut because glut is deprecated
+#include <iostream>
 
+// proper material class
+#include "tools/Materials.h"
+
+
+using namespace std;
 // window title
 #define WINDOW_TITLE_PREFIX "3D design"
 
@@ -20,16 +26,17 @@ unsigned FrameCount = 0;
 void Initialize(int, char*[]);
 void InitWindow(int, char*[]);
 void ResizeFunction(int, int);
-void RenderFunction(void);
+
+void RenderFunction();
 void TimerFunction(int);
-void IdleFunction(void);
+
+void IdleFunction();
 
 void display();
 
 // entry point
 int main(int argc, char* argv[])
 {
-
     Initialize(argc, argv);
 
     glutMainLoop();
@@ -66,12 +73,11 @@ void display() {
     //glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
 
-    glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, shine);
-    glPushMatrix();
+    // creating an Object of Materials class
+    Materials material;
     //setMaterial
+
+    material.setMaterial(material.RED_PLASTIC);
     glutSolidTeapot(125.0);
     glPopMatrix();
 }
@@ -110,7 +116,7 @@ void Initialize(int argc, char* argv[])
     //glClearColor(1.0f, 0.0f, 1.0f, 0.0f); // purple
     //glClearColor(0.0f, 0.0f, 0.5f, 0.0f); // dark blue
 
-    // flags to enable materials and lighting
+    // flags to enable Materials and lighting
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glDepthFunc(GL_LESS);
@@ -184,7 +190,7 @@ void ResizeFunction(int Width, int Height)
     glLoadIdentity();
 }
 
-void RenderFunction(void)
+void RenderFunction()
 {
     ++FrameCount; // aumentando el contador de FPS
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -201,7 +207,7 @@ void RenderFunction(void)
     glutPostRedisplay();
 }
 
-void IdleFunction(void)
+void IdleFunction()
 {
     glutPostRedisplay();
 }

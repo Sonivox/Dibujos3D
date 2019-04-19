@@ -87,6 +87,12 @@
 		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/main.cpp">
 			<Option target="Desing3D"/>
 		</Unit>
+		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/tools/Materials.cpp">
+			<Option target="Desing3D"/>
+		</Unit>
+		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/tools/Materials.h">
+			<Option target="Desing3D"/>
+		</Unit>
 		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

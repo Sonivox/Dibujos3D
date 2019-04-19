@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+tools/Materials.o: tools/Materials.cpp.o
+
+.PHONY : tools/Materials.o
+
+# target to build an object file
+tools/Materials.cpp.o:
+	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/Materials.cpp.o
+.PHONY : tools/Materials.cpp.o
+
+tools/Materials.i: tools/Materials.cpp.i
+
+.PHONY : tools/Materials.i
+
+# target to preprocess a source file
+tools/Materials.cpp.i:
+	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/Materials.cpp.i
+.PHONY : tools/Materials.cpp.i
+
+tools/Materials.s: tools/Materials.cpp.s
+
+.PHONY : tools/Materials.s
+
+# target to generate assembly for a file
+tools/Materials.cpp.s:
+	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/Materials.cpp.s
+.PHONY : tools/Materials.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... tools/Materials.o"
+	@echo "... tools/Materials.i"
+	@echo "... tools/Materials.s"
 .PHONY : help
 
 

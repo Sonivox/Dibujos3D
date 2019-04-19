@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/Desing3D.dir/main.cpp.o  -o Desing3D /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libglut.so /usr/lib/x86_64-linux-gnu/libXmu.so /usr/lib/x86_64-linux-gnu/libXi.so /usr/lib/x86_64-linux-gnu/libGLEW.so 
+/usr/bin/c++  -g   CMakeFiles/Desing3D.dir/main.cpp.o CMakeFiles/Desing3D.dir/tools/Materials.cpp.o  -o Desing3D /usr/lib/x86_64-linux-gnu/libOpenGL.so /usr/lib/x86_64-linux-gnu/libglut.so /usr/lib/x86_64-linux-gnu/libXmu.so /usr/lib/x86_64-linux-gnu/libXi.so /usr/lib/x86_64-linux-gnu/libGLEW.so 
