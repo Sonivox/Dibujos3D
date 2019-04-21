@@ -52,9 +52,410 @@ int main(int argc, char* argv[])
     exit(EXIT_SUCCESS);
 }
 
+void plano3D() {
+    glBegin(GL_LINES);
+    glVertex3f(0, 0, 0);
+    glVertex3f(300, 0, 0);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 300, 0);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, 300);
+    glEnd();
+
+    glEnable(GL_LINE_STIPPLE);
+    glLineStipple(1, 0x0101);    // Dotted stipple pattern for the lines
+    glBegin(GL_LINES);
+
+    glVertex3f(-300, 0, 0);
+    glVertex3f(0, 0, 0);
+    glColor3f(300.0, 0.0, 0.0);    // Red for y axis
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, -300, 0);
+    glColor3f(0.0, 0.0, 300.0);    // Blue for z axis
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, -300);
+    glEnd();
+
+    glDisable(GL_LINE_STIPPLE);    // Disable the line stipple
+}
+
+void primero() {
+    Materials materials;
+
+//    glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
+    glBegin(GL_QUADS);
+
+    //para el techo flotante
+    //cara de arriba (arriba)
+    materials.setMaterialColor(142, 141, 155, 100);
+    glVertex3f(100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 280.0f, 100.0f);
+    glVertex3f(100.0f, 280.0f, 100.0f);
+
+    //cara de arriba (abajo)
+    glVertex3f(100.0f, 265.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, 100.0f);
+
+    //cara de arriba (enfrente)
+    glVertex3f(100.0f, 280.0f, 100.0f);
+    glVertex3f(-100.0f, 280.0f, 100.0f);
+    glVertex3f(-100.0f, 265.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, 100.0f);
+
+    //cara de arriba (izquierda)
+    materials.setMaterialColor(90, 100, 110, 8);
+    glVertex3f(-100.0f, 280.0f, 100.0f);
+    glVertex3f(-100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, 100.0f);
+
+    //cara de arriba (derecha)
+    glVertex3f(100.0f, 280.0f, -100.0f);
+    glVertex3f(100.0f, 280.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, -100.0f);
+
+    //cara de arriba (atras)
+    glVertex3f(100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, -100.0f);
+    glVertex3f(100.0f, 265.0f, -100.0f);
+    //fin del techo flotante
+
+
+
+    //suelo
+    materials.setMaterialColor(142, 141, 155, 20);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, -100.0f);
+    glVertex3f(100.0f, -100.0f, -100.0f);
+    //fin del suelo :v
+
+    // cara frente
+    materials.setMaterialColor(88, 90, 103, 10);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+
+    //cara frente (adelante)
+    glVertex3f(100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, -100.0f, 85.0f);
+    glVertex3f(100.0f, -100.0f, 85.0f);
+
+    //cara frente (arriba)
+    glVertex3f(100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    //fin de cara enfrente
+
+    // cara de atras
+    //cara de atras (enfrente)
+    materials.setMaterialColor(88, 90, 103, 10);
+    glVertex3f(100.0f, -100.0f, -85.0f);
+    glVertex3f(-100.0f, -100.0f, -85.0f);
+    glVertex3f(-100.0f, 100.0f, -85.0f);
+    glVertex3f(100.0f, 100.0f, -85.0f);
+
+    //cara de atras (trasera)
+    glVertex3f(100.0f, -100.0f, -100.0f);
+    glVertex3f(-100.0f, -100.0f, -100.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(100.0f, 100.0f, -100.0f);
+
+    //cara de atras (arriba)
+    glVertex3f(100.0f, 100.0f, -85.0f);
+    glVertex3f(-100.0f, 100.0f, -85.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(100.0f, 100.0f, -100.0f);
+    //fin de cara de atras
+
+
+    // cara izquierda
+    //cara izquierda (adelante)
+    materials.setMaterialColor(148, 148, 148, 0);
+    glVertex3f(-85.0f, 100.0f, 100.0f);
+    glVertex3f(-85.0f, 100.0f, -100.0f);
+    glVertex3f(-85.0f, -100.0f, -100.0f);
+    glVertex3f(-85.0f, -100.0f, 100.0f);
+
+    //cara izquierda (atras)
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(-100.0f, -100.0f, -100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+
+    //cara izquierda (arriba)
+    glVertex3f(-85.0f, 100.0f, -100.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-85.0f, 100.0f, 100.0f);
+
+    //cara izquierda (enfrente)
+    glVertex3f(-85.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+    glVertex3f(-85.0f, -100.0f, 100.0f);
+    //fin de cara izquierda
+
+    // cara derecha
+    materials.setMaterialColor(148, 148, 148, 100);
+    glVertex3f(100.0f, 100.0f, -100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, -100.0f);
+
+    //cara derecha (adelante)
+    glVertex3f(85.0f, 100.0f, -100.0f);
+    glVertex3f(85.0f, 100.0f, 100.0f);
+    glVertex3f(85.0f, -100.0f, 100.0f);
+    glVertex3f(85.0f, -100.0f, -100.0f);
+
+    //cara derecha (arriba)
+    glVertex3f(100.0f, 100.0f, -100.0f);
+    glVertex3f(85.0f, 100.0f, -100.0f);
+    glVertex3f(85.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+
+    //cara derecha (enfrente)
+    glVertex3f(85.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+    glVertex3f(85.0f, -100.0f, 100.0f);
+    //fin de la cara derecha
+
+    //pared interna izquierda
+    materials.setMaterialColor(90, 100, 110, 120);
+    glVertex3f(-30.0f, -100.0f, -15.0f);
+    glVertex3f(-85.0f, -100.0f, -15.0f);
+    glVertex3f(-85.0f, 100.0f, -15.0f);
+    glVertex3f(-30.0f, 100.0f, -15.0f);
+
+    glVertex3f(-30.0f, -100.0f, -0.0f);
+    glVertex3f(-85.0f, -100.0f, -0.0f);
+    glVertex3f(-85.0f, 100.0f, -0.0f);
+    glVertex3f(-30.0f, 100.0f, -0.0f);
+
+    glVertex3f(-30.0f, 100.0f, -15.0f);
+    glVertex3f(-85.0f, 100.0f, -15.0f);
+    glVertex3f(-85.0f, 100.0f, 0.0f);
+    glVertex3f(-30.0f, 100.0f, 0.0f);
+    //fin pared interna izquierda
+
+
+    //pared interna derecha
+    materials.setMaterialColor(90, 100, 110, 120);
+    glVertex3f(85.0f, -100.0f, -0.0f);
+    glVertex3f(30.0f, -100.0f, -0.0f);
+    glVertex3f(30.0f, 100.0f, -0.0f);
+    glVertex3f(85.0f, 100.0f, -0.0f);
+
+    glVertex3f(85.0f, -100.0f, -15.0f);
+    glVertex3f(30.0f, -100.0f, -15.0f);
+    glVertex3f(30.0f, 100.0f, -15.0f);
+    glVertex3f(85.0f, 100.0f, -15.0f);
+
+    glVertex3f(30.0f, 100.0f, -15.0f);
+    glVertex3f(85.0f, 100.0f, -15.0f);
+    glVertex3f(85.0f, 100.0f, 0.0f);
+    glVertex3f(30.0f, 100.0f, 0.0f);
+    //fin pared interna derecha
+    glEnd();
+}
+
+void primeroAlambrico() {
+    Materials materials;
+
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glBegin(GL_QUADS);
+
+    //para el techo flotante
+    //cara de arriba (arriba)
+    materials.setMaterial(materials.BLACK_PLASTIC);
+    glVertex3f(100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 280.0f, 100.0f);
+    glVertex3f(100.0f, 280.0f, 100.0f);
+
+    //cara de arriba (abajo)
+    glVertex3f(100.0f, 265.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, 100.0f);
+
+    //cara de arriba (enfrente)
+    glVertex3f(100.0f, 280.0f, 100.0f);
+    glVertex3f(-100.0f, 280.0f, 100.0f);
+    glVertex3f(-100.0f, 265.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, 100.0f);
+
+    //cara de arriba (izquierda)
+    glVertex3f(-100.0f, 280.0f, 100.0f);
+    glVertex3f(-100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, 100.0f);
+
+    //cara de arriba (derecha)
+    glVertex3f(100.0f, 280.0f, -100.0f);
+    glVertex3f(100.0f, 280.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, 100.0f);
+    glVertex3f(100.0f, 265.0f, -100.0f);
+
+    //cara de arriba (atras)
+    glVertex3f(100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 280.0f, -100.0f);
+    glVertex3f(-100.0f, 265.0f, -100.0f);
+    glVertex3f(100.0f, 265.0f, -100.0f);
+    //fin del techo flotante
+
+
+
+    //suelo
+    glVertex3f(100.0f, -100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, -100.0f);
+    glVertex3f(100.0f, -100.0f, -100.0f);
+    //fin del suelo :v
+
+    // cara frente
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+
+    //cara frente (adelante)
+    glVertex3f(100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, -100.0f, 85.0f);
+    glVertex3f(100.0f, -100.0f, 85.0f);
+
+    //cara frente (arriba)
+    glVertex3f(100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, 100.0f, 85.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    //fin de cara enfrente
+
+    // cara de atras
+    //cara de atras (enfrente)
+    glVertex3f(100.0f, -100.0f, -85.0f);
+    glVertex3f(-100.0f, -100.0f, -85.0f);
+    glVertex3f(-100.0f, 100.0f, -85.0f);
+    glVertex3f(100.0f, 100.0f, -85.0f);
+
+    //cara de atras (trasera)
+
+    glVertex3f(100.0f, -100.0f, -100.0f);
+    glVertex3f(-100.0f, -100.0f, -100.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(100.0f, 100.0f, -100.0f);
+
+    //cara de atras (arriba)
+    glVertex3f(100.0f, 100.0f, -85.0f);
+    glVertex3f(-100.0f, 100.0f, -85.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(100.0f, 100.0f, -100.0f);
+    //fin de cara de atras
+
+
+    // cara izquierda
+    //cara izquierda (adelante)
+    glVertex3f(-85.0f, 100.0f, 100.0f);
+    glVertex3f(-85.0f, 100.0f, -100.0f);
+    glVertex3f(-85.0f, -100.0f, -100.0f);
+    glVertex3f(-85.0f, -100.0f, 100.0f);
+
+    //cara izquierda (atras)
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(-100.0f, -100.0f, -100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+
+    //cara izquierda (arriba)
+    glVertex3f(-85.0f, 100.0f, -100.0f);
+    glVertex3f(-100.0f, 100.0f, -100.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-85.0f, 100.0f, 100.0f);
+
+    //cara izquierda (enfrente)
+    glVertex3f(-85.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, 100.0f, 100.0f);
+    glVertex3f(-100.0f, -100.0f, 100.0f);
+    glVertex3f(-85.0f, -100.0f, 100.0f);
+    //fin de cara izquierda
+
+    // cara derecha
+    glVertex3f(100.0f, 100.0f, -100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, -100.0f);
+
+    //cara derecha (adelante)
+    glVertex3f(85.0f, 100.0f, -100.0f);
+    glVertex3f(85.0f, 100.0f, 100.0f);
+    glVertex3f(85.0f, -100.0f, 100.0f);
+    glVertex3f(85.0f, -100.0f, -100.0f);
+
+    //cara derecha (arriba)
+    glVertex3f(100.0f, 100.0f, -100.0f);
+    glVertex3f(85.0f, 100.0f, -100.0f);
+    glVertex3f(85.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+
+    //cara derecha (enfrente)
+    glVertex3f(85.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, 100.0f, 100.0f);
+    glVertex3f(100.0f, -100.0f, 100.0f);
+    glVertex3f(85.0f, -100.0f, 100.0f);
+    //fin de la cara derecha
+
+    //pared interna izquierda
+    glVertex3f(-30.0f, -100.0f, -15.0f);
+    glVertex3f(-85.0f, -100.0f, -15.0f);
+    glVertex3f(-85.0f, 100.0f, -15.0f);
+    glVertex3f(-30.0f, 100.0f, -15.0f);
+
+    glVertex3f(-30.0f, -100.0f, -0.0f);
+    glVertex3f(-85.0f, -100.0f, -0.0f);
+    glVertex3f(-85.0f, 100.0f, -0.0f);
+    glVertex3f(-30.0f, 100.0f, -0.0f);
+
+    glVertex3f(-30.0f, 100.0f, -15.0f);
+    glVertex3f(-85.0f, 100.0f, -15.0f);
+    glVertex3f(-85.0f, 100.0f, 0.0f);
+    glVertex3f(-30.0f, 100.0f, 0.0f);
+    //fin pared interna izquierda
+
+
+    //pared interna derecha
+    glVertex3f(85.0f, -100.0f, -0.0f);
+    glVertex3f(30.0f, -100.0f, -0.0f);
+    glVertex3f(30.0f, 100.0f, -0.0f);
+    glVertex3f(85.0f, 100.0f, -0.0f);
+
+    glVertex3f(85.0f, -100.0f, -15.0f);
+    glVertex3f(30.0f, -100.0f, -15.0f);
+    glVertex3f(30.0f, 100.0f, -15.0f);
+    glVertex3f(85.0f, 100.0f, -15.0f);
+
+    glVertex3f(30.0f, 100.0f, -15.0f);
+    glVertex3f(85.0f, 100.0f, -15.0f);
+    glVertex3f(85.0f, 100.0f, 0.0f);
+    glVertex3f(30.0f, 100.0f, 0.0f);
+    //fin pared interna derecha
+    glEnd();
+}
+
 // all drawings here
 void display() {
-
+    glRotated(45.0, 1.0, 0.0, 0.0);
+    glRotated(30.0, 0.0, 1.0, 0.0);
     light.activateLight();
     //light.glDisableLight();
 
@@ -65,7 +466,8 @@ void display() {
     //material.setMaterial(material.BRASS);
     material.setMaterialColor(255, 126, 14, 50.0);
 
-    glutSolidTeapot(150.0);
+    primero();
+    primeroAlambrico();
     glPopMatrix();
 
 
@@ -73,7 +475,7 @@ void display() {
     material.setMaterialColor(150, 0, 215, 50.0);
 
     glTranslatef(200, 200, 200);
-    glutSolidSphere(50, 100, 100);
+//    glutSolidSphere(10, 100, 100);
     glPopMatrix();
 }
 

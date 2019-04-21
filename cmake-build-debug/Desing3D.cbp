@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug"/>
+				<Option working_dir="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug"/>
+				<Option working_dir="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Desing3D">
-				<Option output="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Desing3D" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug"/>
+				<Option output="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Desing3D" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 Desing3D"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 Desing3D"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Desing3D/fast">
-				<Option output="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Desing3D" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug"/>
+				<Option output="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Desing3D" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -67,39 +67,39 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 Desing3D/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 Desing3D/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug"/>
+				<Option working_dir="/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/main.cpp">
+		<Unit filename="/home/sonivox/CLionProjects/Dibujos3D/main.cpp">
 			<Option target="Desing3D"/>
 		</Unit>
-		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/tools/Materials.cpp">
+		<Unit filename="/home/sonivox/CLionProjects/Dibujos3D/tools/Lighting.cpp">
 			<Option target="Desing3D"/>
 		</Unit>
-		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/tools/Materials.h">
+		<Unit filename="/home/sonivox/CLionProjects/Dibujos3D/tools/Lighting.h">
 			<Option target="Desing3D"/>
 		</Unit>
-		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/tools/lighting.cpp">
+		<Unit filename="/home/sonivox/CLionProjects/Dibujos3D/tools/Materials.cpp">
 			<Option target="Desing3D"/>
 		</Unit>
-		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/tools/lighting.h">
+		<Unit filename="/home/sonivox/CLionProjects/Dibujos3D/tools/Materials.h">
 			<Option target="Desing3D"/>
 		</Unit>
-		<Unit filename="/home/fernando9825/CLionProjects/Dibujos3D/CMakeLists.txt">
+		<Unit filename="/home/sonivox/CLionProjects/Dibujos3D/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
