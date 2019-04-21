@@ -109,10 +109,10 @@ void Materials::materialList(int MATERIAL) {
             setGlShininess(0.4);
             break;
         case 11:
-            setGlAmbient(new GLfloat[3]{0.19225, 0.19225, 0.19225});
-            setGlDiffuse(new GLfloat[3]{0.50754, 0.50754, 0.50754});
-            setGlSpecular(new GLfloat[3]{0.508273, 0.508273, 0.508273});
-            setGlShininess(0.4);
+            setGlAmbient(new GLfloat[3]{0.23125f, 0.23125f, 0.23125f});
+            setGlDiffuse(new GLfloat[3]{0.2775f, 0.2775f, 0.2775f});
+            setGlSpecular(new GLfloat[3]{0.773911f, 0.773911f, 0.773911f});
+            setGlShininess(0.7);
             break;
         case 12:
             setGlAmbient(new GLfloat[3]{0.0, 0.0, 0.0});
@@ -202,6 +202,21 @@ void Materials::materialList(int MATERIAL) {
 
 const GLfloat *Materials::getGlShininess() const {
     return glShininess;
+}
+
+void Materials::setMaterialColor(GLfloat red, GLfloat green, GLfloat blue, double shininess) {
+    red = red / 255;
+    green = green / 255;
+    blue = blue / 255;
+
+    GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat diffuseMaterial[4] = {red, green, blue, 1.0};
+
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMaterial);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+
 }
 
 

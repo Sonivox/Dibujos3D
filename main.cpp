@@ -5,11 +5,14 @@
 #include <GL/freeglut.h> // freeglut instead of glut because glut is deprecated
 #include <iostream>
 
-// proper material class
+// proper Material class
 #include "tools/Materials.h"
 
+// proper Lighting class
+#include "tools/Lighting.h"
 
 using namespace std;
+
 // window title
 #define WINDOW_TITLE_PREFIX "3D design"
 
@@ -22,17 +25,22 @@ int
 // frame-counter var
 unsigned FrameCount = 0;
 
+// default orthogonal view
+GLfloat ortho[] = {-300, 300, -300, 300, -300, 300};
+
+// Lighting constructor placed at center of the screen
+Lighting light = Lighting(0, 0, abs(ortho[0]));
+
 // function prototypes
 void Initialize(int, char*[]);
 void InitWindow(int, char*[]);
 void ResizeFunction(int, int);
-
 void RenderFunction();
 void TimerFunction(int);
-
 void IdleFunction();
-
 void display();
+
+void lightKeys(unsigned char, int, int);
 
 // entry point
 int main(int argc, char* argv[])
@@ -46,36 +54,62 @@ int main(int argc, char* argv[])
 
 // all drawings here
 void display() {
-    // "Limpiamos" el frame buffer con el color de "Clear", en este
-    // caso negro.
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glMatrixMode( GL_MODELVIEW_MATRIX );
-    glLoadIdentity();
 
-    // Rotacion de 25 grados en torno al eje x
-    glRotated(25.0, 1.0, 0.0, 0.0);
-    // Rotacion de -30 grados en torno al eje y
-    glRotated(-30.0, 0.0, 1.0, 0.0);
-
-    // Dibujamos una "Tetera" y le aplico el material
-    //glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-    //glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-    //glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-    //glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-
+    light.activateLight();
+    //light.glDisableLight();
 
     // creating an Object of Materials class
     Materials material;
+
     //setMaterial
+    //material.setMaterial(material.BRASS);
+    material.setMaterialColor(255, 126, 14, 50.0);
 
-    material.setMaterial(material.RED_PLASTIC);
-    glutSolidTeapot(125.0);
+    glutSolidTeapot(150.0);
     glPopMatrix();
 
-    material.setMaterial(material.JADE);
-    glTranslatef(100, 100, 100);
-    glutSolidSphere(100, 100, 100);
+
+    //material.setMaterial(material.JADE);
+    material.setMaterialColor(150, 0, 215, 50.0);
+
+    glTranslatef(200, 200, 200);
+    glutSolidSphere(50, 100, 100);
     glPopMatrix();
+}
+
+// it sets I = up,J = left, K = down, L = right
+void lightKeys(unsigned char key, int x, int y) {
+    double increment = 10;
+
+    double actualX = light.getLightPosition()[0];
+    double actualY = light.getLightPosition()[1];
+    double actualZ = light.getLightPosition()[2];
+
+    switch (key) {
+        // left
+        case 'j':
+        case 'J':
+            light.setPosition(actualX - increment, actualY, actualZ);
+            break;
+
+            // right
+        case 'l':
+        case 'L':
+            light.setPosition(actualX + increment, actualY, actualZ);
+            break;
+
+            // up
+        case 'i':
+        case 'I':
+            light.setPosition(actualX, actualY + increment, actualZ);
+            break;
+
+            // down
+        case 'k':
+        case 'K':
+            light.setPosition(actualX, actualY - increment, actualZ);
+            break;
+    }
 }
 
 void Initialize(int argc, char* argv[])
@@ -112,12 +146,12 @@ void Initialize(int argc, char* argv[])
     //glClearColor(1.0f, 0.0f, 1.0f, 0.0f); // purple
     //glClearColor(0.0f, 0.0f, 0.5f, 0.0f); // dark blue
 
-    // flags to enable Materials and lighting
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glDepthFunc(GL_LESS);
-    glEnable(GL_DEPTH_TEST);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    // flags to enable Materials and Lighting
+    //glEnable(GL_LIGHTING);
+    //glEnable(GL_LIGHT0);
+    //glDepthFunc(GL_LESS);
+    //glEnable(GL_DEPTH_TEST);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void InitWindow(int argc, char* argv[])
@@ -161,6 +195,10 @@ void InitWindow(int argc, char* argv[])
     // behavior to run at idle
     glutIdleFunc(IdleFunction);
     glutTimerFunc(0, TimerFunction, 0);
+
+    // key listener
+    //glutSpecialFunc(lightKeys);
+    glutKeyboardFunc(lightKeys);
 }
 
 void ResizeFunction(int Width, int Height)
@@ -178,7 +216,7 @@ void ResizeFunction(int Width, int Height)
     glLoadIdentity();
 
     // Usamos proyeccion ortogonal
-    glOrtho(-300, 300, -300, 300, -300, 300);
+    glOrtho(ortho[0], ortho[1], ortho[2], ortho[3], ortho[4], ortho[5]);
     // Activamos la matriz de modelado/visionado.
     glMatrixMode(GL_MODELVIEW);
 
@@ -190,6 +228,9 @@ void RenderFunction()
 {
     ++FrameCount; // aumentando el contador de FPS
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW_MATRIX);
+    glLoadIdentity();
 
     // DRAWINGS START
     display();

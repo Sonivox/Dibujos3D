@@ -3,7 +3,11 @@
 
 CMakeFiles/Desing3D.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Desing3D.dir/main.cpp.o: ../tools/Materials.h
+CMakeFiles/Desing3D.dir/main.cpp.o: ../tools/lighting.h
 
 CMakeFiles/Desing3D.dir/tools/Materials.cpp.o: ../tools/Materials.cpp
 CMakeFiles/Desing3D.dir/tools/Materials.cpp.o: ../tools/Materials.h
+
+CMakeFiles/Desing3D.dir/tools/lighting.cpp.o: ../tools/lighting.cpp
+CMakeFiles/Desing3D.dir/tools/lighting.cpp.o: ../tools/lighting.h
 

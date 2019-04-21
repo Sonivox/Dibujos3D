@@ -177,6 +177,33 @@ tools/Materials.cpp.s:
 	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/Materials.cpp.s
 .PHONY : tools/Materials.cpp.s
 
+tools/lighting.o: tools/lighting.cpp.o
+
+.PHONY : tools/lighting.o
+
+# target to build an object file
+tools/lighting.cpp.o:
+	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/lighting.cpp.o
+.PHONY : tools/lighting.cpp.o
+
+tools/lighting.i: tools/lighting.cpp.i
+
+.PHONY : tools/lighting.i
+
+# target to preprocess a source file
+tools/lighting.cpp.i:
+	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/lighting.cpp.i
+.PHONY : tools/lighting.cpp.i
+
+tools/lighting.s: tools/lighting.cpp.s
+
+.PHONY : tools/lighting.s
+
+# target to generate assembly for a file
+tools/lighting.cpp.s:
+	$(MAKE) -f CMakeFiles/Desing3D.dir/build.make CMakeFiles/Desing3D.dir/tools/lighting.cpp.s
+.PHONY : tools/lighting.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... tools/Materials.o"
 	@echo "... tools/Materials.i"
 	@echo "... tools/Materials.s"
+	@echo "... tools/lighting.o"
+	@echo "... tools/lighting.i"
+	@echo "... tools/lighting.s"
 .PHONY : help
 
 

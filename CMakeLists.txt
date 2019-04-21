@@ -3,7 +3,7 @@ project(Desing3D)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Desing3D main.cpp tools/Materials.cpp tools/Materials.h)
+add_executable(Desing3D main.cpp tools/Materials.cpp tools/Materials.h tools/Lighting.cpp tools/Lighting.h)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)

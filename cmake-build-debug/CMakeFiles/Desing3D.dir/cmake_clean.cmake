@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Desing3D.dir/main.cpp.o"
   "CMakeFiles/Desing3D.dir/tools/Materials.cpp.o"
+  "CMakeFiles/Desing3D.dir/tools/lighting.cpp.o"
   "Desing3D.pdb"
   "Desing3D"
 )

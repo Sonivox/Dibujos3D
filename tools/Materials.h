@@ -65,6 +65,8 @@ public:
 
     void setMaterial(int MATERIAL);
 
+    void setMaterialColor(GLfloat red, GLfloat green, GLfloat blue, double shininess);
+
 };
 
 

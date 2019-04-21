@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/fernando9825/CLionProjects/Dibujos3D/main.cpp" "/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/CMakeFiles/Desing3D.dir/main.cpp.o"
   "/home/fernando9825/CLionProjects/Dibujos3D/tools/Materials.cpp" "/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/CMakeFiles/Desing3D.dir/tools/Materials.cpp.o"
+  "/home/fernando9825/CLionProjects/Dibujos3D/tools/lighting.cpp" "/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/CMakeFiles/Desing3D.dir/tools/lighting.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
