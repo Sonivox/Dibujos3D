@@ -31,6 +31,8 @@ GLfloat ortho[] = {-300, 300, -300, 300, -300, 300};
 // Lighting constructor placed at center of the screen
 Lighting light = Lighting(0, 0, abs(ortho[0]));
 
+Materials materials;
+
 // function prototypes
 void Initialize(int, char*[]);
 void InitWindow(int, char*[]);
@@ -52,7 +54,13 @@ int main(int argc, char* argv[])
     exit(EXIT_SUCCESS);
 }
 
+//plano 3D para ubicar mejor
 void plano3D() {
+    //ratacion
+    //  glRotated(45.0, 1.0, 0.0, 0.0);
+//    glRotated(30.0, 0.0, 1.0, 0.0);
+
+    materials.setMaterialColor(255, 255, 200, 5);
     glBegin(GL_LINES);
     glVertex3f(0, 0, 0);
     glVertex3f(300, 0, 0);
@@ -80,10 +88,11 @@ void plano3D() {
 }
 
 void primero() {
-    Materials materials;
-
-//    glPolygonMode (GL_FRONT_AND_BACK, GL_LINE);
     glBegin(GL_QUADS);
+
+    //rotacion
+    glRotated(45.0, 1.0, 0.0, 0.0);
+    glRotated(30.0, 0.0, 1.0, 0.0);
 
     //para el techo flotante
     //cara de arriba (arriba)
@@ -270,8 +279,6 @@ void primero() {
 }
 
 void primeroAlambrico() {
-    Materials materials;
-
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glBegin(GL_QUADS);
 
@@ -452,30 +459,226 @@ void primeroAlambrico() {
     glEnd();
 }
 
+void segundo() {
+
+    light.setPosition(50, 50, 50);
+    glBegin(GL_QUADS);
+    //para la lampara
+    materials.setMaterialColor(255, 255, 255, 5);
+    glVertex3f(30.0f, 140.0f, -100.0f);
+    glVertex3f(-30.0f, 140.0f, -100.0f);
+    glVertex3f(-35.0f, 180.0f, -100.0f);
+    glVertex3f(35.0f, 180.0f, -100.0f);
+
+    //para el techo
+    materials.setMaterialColor(88, 99, 82, 20);
+    glVertex3f(100.0f, 100.0f, -300.0f);
+    glVertex3f(-100.0f, 100.0f, -300.0f);
+    glVertex3f(-150.0f, 300.0f, 300.0f);
+    glVertex3f(150.0f, 300.0f, 300.0f);
+
+
+    //para el suelo
+    //materials.setMaterial(materials.BLACK_PLASTIC);
+    materials.setMaterialColor(170, 183, 173, 10);
+    glVertex3f(100.0f, -100.0f, -300.0f);
+    glVertex3f(-100.0f, -100.0f, -300.0f);
+    glVertex3f(-300.0f, -300.0f, 300.0f);
+    glVertex3f(300.0f, -300.0f, 300.0f);
+
+    //oara el fondo del cuarto
+    materials.setMaterialColor(179, 192, 182, 20);
+    glVertex3f(100.0f, -100.0f, -200.0f);
+    glVertex3f(-100.0f, -100.0f, -200.0f);
+    glVertex3f(-100.0f, 100.0f, -200.0f);
+    glVertex3f(100.0f, 100.0f, -200.0f);
+
+
+    //para la pared izquierda roja
+    materials.setMaterialColor(119, 25, 21, 10);
+    glVertex3f(-300.0f, 300.0f, 300.0f);
+    glVertex3f(-300.0f, -300.0f, 300.0f);
+    glVertex3f(-100.0f, -300.0f, -300.0f);
+    glVertex3f(-100.0f, 300.0f, -300.0f);
+
+
+    //para la pared derecha verde
+    materials.setMaterialColor(84, 157, 16, 10);
+    glVertex3f(300.0f, 300.0f, 300.0f);
+    glVertex3f(300.0f, -300.0f, 300.0f);
+    glVertex3f(100.0f, -300.0f, -300.0f);
+    glVertex3f(100.0f, 300.0f, -300.0f);
+
+
+    materials.setMaterialColor(148, 153, 147, 30);
+    //Cubo de enfrente
+    glVertex3f(60.0f, -120.0f, 150.0f);
+    glVertex3f(60.0f, -300.0f, 200.0f);
+    glVertex3f(120.0f, -300.0f, 200.0f);
+    glVertex3f(120.0f, -120.0f, 150.0f);
+
+
+    glVertex3f(50.0f, -110.0f, 150.0f);
+    glVertex3f(50.0f, -300.0f, 100.0f);
+    glVertex3f(60.0f, -300.0f, 200.0f);
+    glVertex3f(60.0f, -120.0f, 150.0f);
+
+    glVertex3f(60.0f, -120.0f, 100.0f);
+    glVertex3f(120.0f, -120.0f, 100.0f);
+    glVertex3f(110.0f, -110.0f, 100.0f);
+    glVertex3f(50.0f, -110.0f, 100.0f);
+
+
+    //Cubo de atras
+    materials.setMaterialColor(159, 168, 140, 10);
+    glVertex3f(-50.0f, -120.0f, 150.0f);
+    glVertex3f(-50.0f, -50.0f, 200.0f);
+    glVertex3f(-100.0f, -50.0f, 200.0f);
+    glVertex3f(-100.0f, -120.0f, 150.0f);
+
+
+    glVertex3f(-40.0f, -110.0f, 150.0f);
+    glVertex3f(-40.0f, -40.0f, 100.0f);
+    glVertex3f(-50.0f, -50.0f, 200.0f);
+    glVertex3f(-50.0f, -120.0f, 150.0f);
+
+    glVertex3f(-50.0f, -50.0f, 100.0f);
+    glVertex3f(-100.0f, -50.0f, 100.0f);
+    glVertex3f(-90.0f, -40.0f, 100.0f);
+    glVertex3f(-40.0f, -40.0f, 100.0f);
+    glEnd();
+}
+
+void segundoAlambrico() {
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glBegin(GL_QUADS);
+    materials.setMaterial(materials.BLACK_PLASTIC);
+    //para la lampara
+    glVertex3f(30.0f, 140.0f, -100.0f);
+    glVertex3f(-30.0f, 140.0f, -100.0f);
+    glVertex3f(-35.0f, 180.0f, -100.0f);
+    glVertex3f(35.0f, 180.0f, -100.0f);
+
+    //para el techo
+    glVertex3f(100.0f, 100.0f, -300.0f);
+    glVertex3f(-100.0f, 100.0f, -300.0f);
+    glVertex3f(-150.0f, 300.0f, 300.0f);
+    glVertex3f(150.0f, 300.0f, 300.0f);
+
+    //para el suelo
+    glVertex3f(100.0f, -100.0f, -300.0f);
+    glVertex3f(-100.0f, -100.0f, -300.0f);
+    glVertex3f(-300.0f, -300.0f, 300.0f);
+    glVertex3f(300.0f, -300.0f, 300.0f);
+
+    //oara el fondo del cuarto
+    glVertex3f(100.0f, -100.0f, -200.0f);
+    glVertex3f(-100.0f, -100.0f, -200.0f);
+    glVertex3f(-100.0f, 100.0f, -200.0f);
+    glVertex3f(100.0f, 100.0f, -200.0f);
+
+
+    //para la pared izquierda roja
+    glVertex3f(-300.0f, 300.0f, 300.0f);
+    glVertex3f(-300.0f, -300.0f, 300.0f);
+    glVertex3f(-100.0f, -300.0f, -300.0f);
+    glVertex3f(-100.0f, 300.0f, -300.0f);
+
+
+    //para la pared derecha verde
+    glVertex3f(300.0f, 300.0f, 300.0f);
+    glVertex3f(300.0f, -300.0f, 300.0f);
+    glVertex3f(100.0f, -300.0f, -300.0f);
+    glVertex3f(100.0f, 300.0f, -300.0f);
+
+    //Cubo de enfrente
+    glVertex3f(60.0f, -120.0f, 150.0f);
+    glVertex3f(60.0f, -300.0f, 200.0f);
+    glVertex3f(120.0f, -300.0f, 200.0f);
+    glVertex3f(120.0f, -120.0f, 150.0f);
+
+
+    glVertex3f(50.0f, -110.0f, 150.0f);
+    glVertex3f(50.0f, -300.0f, 100.0f);
+    glVertex3f(60.0f, -300.0f, 200.0f);
+    glVertex3f(60.0f, -120.0f, 150.0f);
+
+    glVertex3f(60.0f, -120.0f, 100.0f);
+    glVertex3f(120.0f, -120.0f, 100.0f);
+    glVertex3f(110.0f, -110.0f, 100.0f);
+    glVertex3f(50.0f, -110.0f, 100.0f);
+
+
+    //Cubo de atras
+    glVertex3f(-50.0f, -120.0f, 150.0f);
+    glVertex3f(-50.0f, -50.0f, 200.0f);
+    glVertex3f(-100.0f, -50.0f, 200.0f);
+    glVertex3f(-100.0f, -120.0f, 150.0f);
+
+
+    glVertex3f(-40.0f, -110.0f, 150.0f);
+    glVertex3f(-40.0f, -40.0f, 100.0f);
+    glVertex3f(-50.0f, -50.0f, 200.0f);
+    glVertex3f(-50.0f, -120.0f, 150.0f);
+
+    glVertex3f(-50.0f, -50.0f, 100.0f);
+    glVertex3f(-100.0f, -50.0f, 100.0f);
+    glVertex3f(-90.0f, -40.0f, 100.0f);
+    glVertex3f(-40.0f, -40.0f, 100.0f);
+    glEnd();
+}
+
+
+//dibujar cuadro del suelo
+void cuadro(float x, float y, float z, float tam) {
+    tam = tam / 2;
+    glBegin(GL_QUADS);
+    glVertex3f(x + tam, 0, z + tam);
+    glVertex3f(x + tam, 0, z - tam);
+    glVertex3f(x - tam, 0, z - tam);
+    glVertex3f(x - tam, 0, z + tam);
+    glEnd();
+}
+
+//pintar suelo
+void pintarSuelo(void) {
+    for (int i = -30; i <= 30; i++) {
+        if ((i % 2) == 0) {
+            for (int j = -30; j < 30; j++) {
+                if (((j) % 2) == 0) {
+                    cuadro(j, 0, i, 1);
+                }
+            }
+        } else {
+            for (int j = -30; j <= 30; j++) {
+                if (((j) % 2) != 0) {
+                    cuadro(j, 0, i, 1);
+                }
+            }
+        }
+    }
+
+}
+
+void tercero() {
+
+}
+
 // all drawings here
 void display() {
-    glRotated(45.0, 1.0, 0.0, 0.0);
-    glRotated(30.0, 0.0, 1.0, 0.0);
+
     light.activateLight();
     //light.glDisableLight();
 
     // creating an Object of Materials class
-    Materials material;
 
-    //setMaterial
-    //material.setMaterial(material.BRASS);
-    material.setMaterialColor(255, 126, 14, 50.0);
+    plano3D();
+    //primero();
+    //primeroAlambrico();
+    segundo();
+    segundoAlambrico();
+//    pintarSuelo();
 
-    primero();
-    primeroAlambrico();
-    glPopMatrix();
-
-
-    //material.setMaterial(material.JADE);
-    material.setMaterialColor(150, 0, 215, 50.0);
-
-    glTranslatef(200, 200, 200);
-//    glutSolidSphere(10, 100, 100);
     glPopMatrix();
 }
 
@@ -514,8 +717,7 @@ void lightKeys(unsigned char key, int x, int y) {
     }
 }
 
-void Initialize(int argc, char* argv[])
-{
+void Initialize(int argc, char *argv[]) {
 
     GLenum GlewInitResult;
 
@@ -556,8 +758,7 @@ void Initialize(int argc, char* argv[])
     //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void InitWindow(int argc, char* argv[])
-{
+void InitWindow(int argc, char *argv[]) {
     glutInit(&argc, argv);
 
     // set OpenGL's major and minor versions
@@ -603,8 +804,7 @@ void InitWindow(int argc, char* argv[])
     glutKeyboardFunc(lightKeys);
 }
 
-void ResizeFunction(int Width, int Height)
-{
+void ResizeFunction(int Width, int Height) {
     CurrentWidth = Width;
     CurrentHeight = Height;
 
@@ -617,6 +817,7 @@ void ResizeFunction(int Width, int Height)
     // clean projection matrix with the identity matrix
     glLoadIdentity();
 
+    //aqui va ir el menu cuando se haga
     // Usamos proyeccion ortogonal
     glOrtho(ortho[0], ortho[1], ortho[2], ortho[3], ortho[4], ortho[5]);
     // Activamos la matriz de modelado/visionado.
@@ -626,8 +827,7 @@ void ResizeFunction(int Width, int Height)
     glLoadIdentity();
 }
 
-void RenderFunction()
-{
+void RenderFunction() {
     ++FrameCount; // aumentando el contador de FPS
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -646,13 +846,11 @@ void RenderFunction()
     glutPostRedisplay();
 }
 
-void IdleFunction()
-{
+void IdleFunction() {
     glutPostRedisplay();
 }
 
-void TimerFunction(int Value)
-{
+void TimerFunction(int Value) {
     if (0 != Value) {
         char* TempString = (char*)
                 malloc(512 + strlen(WINDOW_TITLE_PREFIX));
