@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h> // freeglut instead of glut because glut is deprecated
 #include <iostream>
+#include <limits>
 
 // proper Material class
 #include "tools/Materials.h"
@@ -34,13 +35,21 @@ Lighting light = Lighting(0, 0, abs(ortho[0]));
 
 Materials materials;
 
+int opcion;
+
 // function prototypes
-void Initialize(int, char*[]);
-void InitWindow(int, char*[]);
+void Initialize(int, char *[]);
+
+void InitWindow(int, char *[]);
+
 void ResizeFunction(int, int);
+
 void RenderFunction();
+
 void TimerFunction(int);
+
 void IdleFunction();
+
 void display();
 
 void lightKeys(unsigned char, int, int);
@@ -60,12 +69,38 @@ void tercero();
 
 void pintarSuelo();
 
+void menu(int);
+
 // entry point
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
+
+
+    do {
+        cout << "1 - Primer dibujo" << endl;
+        cout << "2 - Segundo dibujo" << endl;
+        cout << "3 - Tercer dibujo\n\n" << endl;
+        cout << "Su opción: ";
+
+        cin >> opcion;
+
+        if (cin.good()) {
+            if (opcion == 1 || opcion == 2 || opcion == 3)
+                break;
+        } else {
+            //something went wrong, we reset the buffer's state to good
+            cin.clear();
+            //and empty it
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ingrese un número valido" << endl;
+        }
+
+    } while (true);
+
+
     Initialize(argc, argv);
 
     glutMainLoop();
+
 
     exit(EXIT_SUCCESS);
 }
@@ -87,8 +122,28 @@ void display() {
     //pintarSuelo();
 
 
-    tercero();
+    //tercero();
 
+    menu(opcion);
+}
+
+void menu(int opcion) {
+
+    switch (opcion) {
+        case 1:
+            light.activateLight();
+            primero();
+            primeroAlambrico();
+            break;
+        case 2:
+            light.activateLight();
+            segundo();
+            segundoAlambrico();
+            break;
+        case 3:
+            tercero();
+            break;
+    }
 }
 
 //plano 3D para ubicar mejor
@@ -2171,13 +2226,15 @@ void InitWindow(int argc, char *argv[]) {
     // if windowHandle is greater than 0, then no errors on creating the window
     WindowHandle = glutCreateWindow(WINDOW_TITLE_PREFIX);
 
-    if(WindowHandle < 1) {
+    if (WindowHandle < 1) {
         fprintf(
                 stderr,
                 "ERROR: Could not create a new rendering window.\n"
         );
         exit(EXIT_FAILURE);
     }
+
+
 
     // reset draws to the new size
     glutReshapeFunc(ResizeFunction);
@@ -2240,7 +2297,7 @@ void IdleFunction() {
 
 void TimerFunction(int Value) {
     if (0 != Value) {
-        char* TempString = (char*)
+        char *TempString = (char *)
                 malloc(512 + strlen(WINDOW_TITLE_PREFIX));
 
         sprintf(
