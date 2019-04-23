@@ -6,6 +6,9 @@
 #define DESING3D_LIGHTING_H
 
 #include <GL/freeglut.h>
+#include <iostream>
+
+using namespace std;
 
 class Lighting {
 public:
@@ -19,7 +22,7 @@ public:
     void setPosition(GLfloat posX, GLfloat posY, GLfloat posZ);
 
 private:
-    GLfloat light_ambient[4] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat light_ambient[4] = {0.0, 0.0, 1.0, 1.0};
     GLfloat light_diffuse[4] = {1.0, 1.0, 1.0, 1.0};
 public:
     const GLfloat *getLightPosition() const;

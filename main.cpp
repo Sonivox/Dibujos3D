@@ -28,6 +28,7 @@ unsigned FrameCount = 0;
 // default orthogonal view
 GLfloat ortho[] = {-300, 300, -300, 300, -300, 300};
 
+// 10, 230, 100
 // Lighting constructor placed at center of the screen
 Lighting light = Lighting(0, 0, abs(ortho[0]));
 
@@ -44,6 +45,19 @@ void display();
 
 void lightKeys(unsigned char, int, int);
 
+//draws
+void plano3D();
+
+void primero();
+
+void primeroAlambrico();
+
+void segundo();
+
+void segundoAlambrico();
+
+void pintarSuelo();
+
 // entry point
 int main(int argc, char* argv[])
 {
@@ -54,11 +68,27 @@ int main(int argc, char* argv[])
     exit(EXIT_SUCCESS);
 }
 
+// all drawings here
+void display() {
+
+    light.activateLight();
+    //light.glDisableLight();
+
+
+
+    //primero();
+    //primeroAlambrico();
+
+    segundo();
+    segundoAlambrico();
+
+    //pintarSuelo();
+
+
+}
+
 //plano 3D para ubicar mejor
 void plano3D() {
-    //ratacion
-    //  glRotated(45.0, 1.0, 0.0, 0.0);
-//    glRotated(30.0, 0.0, 1.0, 0.0);
 
     materials.setMaterialColor(255, 255, 200, 5);
     glBegin(GL_LINES);
@@ -88,11 +118,14 @@ void plano3D() {
 }
 
 void primero() {
-    glBegin(GL_QUADS);
 
     //rotacion
     glRotated(45.0, 1.0, 0.0, 0.0);
     glRotated(30.0, 0.0, 1.0, 0.0);
+    plano3D();
+    glBegin(GL_QUADS);
+
+
 
     //para el techo flotante
     //cara de arriba (arriba)
@@ -460,8 +493,9 @@ void primeroAlambrico() {
 }
 
 void segundo() {
+    light.setPosition(300, 300, 275);
 
-    light.setPosition(50, 50, 50);
+    //plano3D();
     glBegin(GL_QUADS);
     //para la lampara
     materials.setMaterialColor(255, 255, 255, 5);
@@ -469,6 +503,7 @@ void segundo() {
     glVertex3f(-30.0f, 140.0f, -100.0f);
     glVertex3f(-35.0f, 180.0f, -100.0f);
     glVertex3f(35.0f, 180.0f, -100.0f);
+    glPopMatrix();
 
     //para el techo
     materials.setMaterialColor(88, 99, 82, 20);
@@ -476,7 +511,7 @@ void segundo() {
     glVertex3f(-100.0f, 100.0f, -300.0f);
     glVertex3f(-150.0f, 300.0f, 300.0f);
     glVertex3f(150.0f, 300.0f, 300.0f);
-
+    glPopMatrix();
 
     //para el suelo
     //materials.setMaterial(materials.BLACK_PLASTIC);
@@ -485,6 +520,7 @@ void segundo() {
     glVertex3f(-100.0f, -100.0f, -300.0f);
     glVertex3f(-300.0f, -300.0f, 300.0f);
     glVertex3f(300.0f, -300.0f, 300.0f);
+    glPopMatrix();
 
     //oara el fondo del cuarto
     materials.setMaterialColor(179, 192, 182, 20);
@@ -492,7 +528,7 @@ void segundo() {
     glVertex3f(-100.0f, -100.0f, -200.0f);
     glVertex3f(-100.0f, 100.0f, -200.0f);
     glVertex3f(100.0f, 100.0f, -200.0f);
-
+    glPopMatrix();
 
     //para la pared izquierda roja
     materials.setMaterialColor(119, 25, 21, 10);
@@ -500,7 +536,7 @@ void segundo() {
     glVertex3f(-300.0f, -300.0f, 300.0f);
     glVertex3f(-100.0f, -300.0f, -300.0f);
     glVertex3f(-100.0f, 300.0f, -300.0f);
-
+    glPopMatrix();
 
     //para la pared derecha verde
     materials.setMaterialColor(84, 157, 16, 10);
@@ -508,7 +544,7 @@ void segundo() {
     glVertex3f(300.0f, -300.0f, 300.0f);
     glVertex3f(100.0f, -300.0f, -300.0f);
     glVertex3f(100.0f, 300.0f, -300.0f);
-
+    glPopMatrix();
 
     materials.setMaterialColor(148, 153, 147, 30);
     //Cubo de enfrente
@@ -527,7 +563,7 @@ void segundo() {
     glVertex3f(120.0f, -120.0f, 100.0f);
     glVertex3f(110.0f, -110.0f, 100.0f);
     glVertex3f(50.0f, -110.0f, 100.0f);
-
+    glPopMatrix();
 
     //Cubo de atras
     materials.setMaterialColor(159, 168, 140, 10);
@@ -546,6 +582,7 @@ void segundo() {
     glVertex3f(-100.0f, -50.0f, 100.0f);
     glVertex3f(-90.0f, -40.0f, 100.0f);
     glVertex3f(-40.0f, -40.0f, 100.0f);
+    glPopMatrix();
     glEnd();
 }
 
@@ -559,6 +596,7 @@ void segundoAlambrico() {
     glVertex3f(-35.0f, 180.0f, -100.0f);
     glVertex3f(35.0f, 180.0f, -100.0f);
 
+
     //para el techo
     glVertex3f(100.0f, 100.0f, -300.0f);
     glVertex3f(-100.0f, 100.0f, -300.0f);
@@ -570,6 +608,7 @@ void segundoAlambrico() {
     glVertex3f(-100.0f, -100.0f, -300.0f);
     glVertex3f(-300.0f, -300.0f, 300.0f);
     glVertex3f(300.0f, -300.0f, 300.0f);
+
 
     //oara el fondo del cuarto
     glVertex3f(100.0f, -100.0f, -200.0f);
@@ -590,6 +629,7 @@ void segundoAlambrico() {
     glVertex3f(300.0f, -300.0f, 300.0f);
     glVertex3f(100.0f, -300.0f, -300.0f);
     glVertex3f(100.0f, 300.0f, -300.0f);
+    glPopMatrix();
 
     //Cubo de enfrente
     glVertex3f(60.0f, -120.0f, 150.0f);
@@ -625,6 +665,7 @@ void segundoAlambrico() {
     glVertex3f(-100.0f, -50.0f, 100.0f);
     glVertex3f(-90.0f, -40.0f, 100.0f);
     glVertex3f(-40.0f, -40.0f, 100.0f);
+    glPopMatrix();
     glEnd();
 }
 
@@ -664,23 +705,6 @@ void tercero() {
 
 }
 
-// all drawings here
-void display() {
-
-    light.activateLight();
-    //light.glDisableLight();
-
-    // creating an Object of Materials class
-
-    plano3D();
-    //primero();
-    //primeroAlambrico();
-    segundo();
-    segundoAlambrico();
-//    pintarSuelo();
-
-    glPopMatrix();
-}
 
 // it sets I = up,J = left, K = down, L = right
 void lightKeys(unsigned char key, int x, int y) {
@@ -689,6 +713,7 @@ void lightKeys(unsigned char key, int x, int y) {
     double actualX = light.getLightPosition()[0];
     double actualY = light.getLightPosition()[1];
     double actualZ = light.getLightPosition()[2];
+
 
     switch (key) {
         // left
@@ -715,6 +740,7 @@ void lightKeys(unsigned char key, int x, int y) {
             light.setPosition(actualX, actualY - increment, actualZ);
             break;
     }
+
 }
 
 void Initialize(int argc, char *argv[]) {

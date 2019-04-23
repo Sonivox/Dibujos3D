@@ -1,4 +1,4 @@
-# Install script for directory: /home/sonivox/CLionProjects/Dibujos3D
+# Install script for directory: /home/fernando9825/CLionProjects/Dibujos3D
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sonivox/CLionProjects/Dibujos3D/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/fernando9825/CLionProjects/Dibujos3D/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

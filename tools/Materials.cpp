@@ -30,10 +30,10 @@ void Materials::setGlShininess(GLfloat shininess) {
 
 void Materials::setMaterial(int material) {
     materialList(material);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, glAmbient);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, glDiffuse);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, glSpecular);
-    glMaterialfv(GL_FRONT, GL_SHININESS, glShininess);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, glAmbient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, glDiffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glSpecular);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, glShininess);
     glPushMatrix();
 }
 

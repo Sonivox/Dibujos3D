@@ -8,6 +8,7 @@ void Lighting::activateLight() {
     glShadeModel(GL_SMOOTH);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
     glDepthFunc(GL_LESS);
     glEnable(GL_DEPTH_TEST);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -28,6 +29,8 @@ void Lighting::setPosition(GLfloat posX, GLfloat posY, GLfloat posZ) {
     light_position[0] = posX;
     light_position[1] = posY;
     light_position[2] = posZ;
+
+    cout << "(" << posX << ", " << posY << ", " << posZ << ") " << endl;
 }
 
 const GLfloat *Lighting::getLightPosition() const {
